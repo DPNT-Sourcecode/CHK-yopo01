@@ -9,3 +9,7 @@ def hello(friend_name):
     @return = a String containing a message
     """
     return "Hello, World!"
+
+if __name__ == '__main__':
+    print(hello('Tom'))
+
