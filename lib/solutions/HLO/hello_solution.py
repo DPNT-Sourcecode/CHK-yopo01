@@ -9,5 +9,3 @@ def hello(friend_name):
     @return = a String containing a message
     """
     return "Hello, World!"
-
-
