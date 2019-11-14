@@ -10,14 +10,13 @@ def hello(friend_name):
     """
     return "Hello, World!"
 
-class TestCard(unittest.TestCase):
-    def test_card_initial_balance(self):
-        card = Card()
-        self.assertEqual(card.get_balance(), 0.0)
-
 if __name__ == '__main__':
     print(hello('Tom'))
+    class TestHello(unittest.TestCase):
+        def test_hello(self):
+            self.assertEqual((hello('Tom'),"Hello, World!")
     
+
 
 
 
