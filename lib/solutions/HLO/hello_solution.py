@@ -8,5 +8,6 @@ def hello(friend_name):
     param[0] = a String. Ignore for now.
     @return = a String containing a message
     """
-    return 'Hello'
+    return "Hello, World!"
+
 
