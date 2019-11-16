@@ -6,6 +6,7 @@ def hello(friend_name):
     param[0] = a String. Ignore for now.
     @return = a String containing a message
     """
-    return "Hello, %s!".format(friend_name)
+    return "Hello, {}!".format(friend_name)
+
 
 
