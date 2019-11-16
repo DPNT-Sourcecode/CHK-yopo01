@@ -1,5 +1,3 @@
-import unittest
-
 # noinspection PyUnusedLocal
 # friend_name = unicode string
 def hello(friend_name):
@@ -10,8 +8,3 @@ def hello(friend_name):
     """
     return "Hello, World!"
 
-if __name__ == '__main__':
-    print(hello('Tom'))
-    # class TestHello(unittest.TestCase):
-    #     def test_hello(self):
-    #         self.assertEqual((hello('Tom'),"Hello, World!")
