@@ -25,7 +25,7 @@ def checkout(skus):
 
 def apply_special_offers(value, sku):
     """
-    Applyes all special offers. They need to be sorted in descending order of value for the customer
+    Applies all special offers. They need to be sorted in descending order of value for the customer
     :param value: the number of items
     :param sku: the item label
     :return: the total price for that item with the orders applied
@@ -44,6 +44,7 @@ def apply_get_free_offers( value, sku):
 
 if __name__ == '__main__':
     print(checkout('AAAAAAAA'))
+
 
 
 
