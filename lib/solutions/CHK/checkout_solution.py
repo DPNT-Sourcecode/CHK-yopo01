@@ -46,9 +46,11 @@ if __name__ == '__main__':
     assert(checkout('E')==40)
     assert(checkout('ABCDE')==155)
     assert(checkout('EEB')==80)
+    print(checkout('EE'))
     assert(checkout('EE')==80)
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
