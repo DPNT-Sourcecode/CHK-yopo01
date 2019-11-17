@@ -67,8 +67,3 @@ if __name__ == '__main__':
     assert(checkout('BEBEEE')==160)
 
 
-
-
-
-
-
