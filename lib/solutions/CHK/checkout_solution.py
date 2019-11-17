@@ -15,13 +15,15 @@ def checkout(skus):
             return -1
 
     value_counts = get_value_counts(skus)
+
+
     for sku in value_counts.keys():
         so_applied=False
         number_of_occurrencies = value_counts[sku]
         if sku in special_offers.keys():
             total_price += apply_special_offers(number_of_occurrencies, sku)
             so_applied = True
-        if sku in get_free_offers.keys():
+        if sku in get_free_offers.keys() and get_free_offers[sku][0][1][1] in value_counts.keys():
             total_price -= apply_get_free_offers(number_of_occurrencies, sku)
         if not so_applied:
             total_price += number_of_occurrencies * prices[sku]
@@ -60,8 +62,10 @@ if __name__ == '__main__':
     assert(checkout('EEB')==80)
     print(checkout('EE'))
     assert(checkout('EE')==80)
+    print(checkout('EEEEBB'))
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
