@@ -1,7 +1,7 @@
 
 prices = {'A':50, 'B':30, 'C':20, 'D':15, 'E': 40}
 # Special offers ordered in a list from better to worse
-special_offers = {'A': [(5,200),(3,130)], 'B':[(2,45)]} #3A for 130, 5A for 200 , 2B for 45
+special_offers = {'A': ((5,200),(3,130)), 'B':((2,45))} #3A for 130, 5A for 200 , 2B for 45
 get_free_offers = {'E':[(2,(1,'B'))]} # 2E get one B free
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -16,8 +16,8 @@ def checkout(skus):
             total_price += apply_special_offers(number_of_occurrencies, sku)
         if sku in get_free_offers.keys():
             total_price -= apply_get_free_offers(number_of_occurrencies, sku)
-        else:
-            total_price += number_of_occurrencies * prices[sku]
+        # else:
+        #     total_price += number_of_occurrencies * prices[sku]
     return total_price
 
 
@@ -42,5 +42,6 @@ def apply_get_free_offers( value, sku):
 
 if __name__ == '__main__':
     print(checkout('AAAA'))
+
 
 
