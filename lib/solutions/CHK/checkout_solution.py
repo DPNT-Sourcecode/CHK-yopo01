@@ -14,12 +14,12 @@ def checkout(skus):
         if sku not in prices.keys():
             return -1
 
-    value_counts = get_value_counts(skus)
+    cart = get_value_counts(skus)
     # Remove free items from cart
     for sku in get_free_offers.keys():
-        value_counts = remove_free_items_from_cart(value_counts, sku)
+        cart_reduced = remove_free_items_from_cart(cart, sku)
 
-    for sku in value_counts.keys():
+    for sku in cart_reduced.keys():
         so_applied=False
         number_of_occurrencies = value_counts[sku]
         if sku in special_offers.keys():
@@ -50,9 +50,11 @@ def apply_special_offers(value, sku):
         price += quotient*special_offer[1]
     return price + reminder*prices[sku]
 
-def remove_free_items_from_cart(cart, value, sku):
-    quotient, reminder = divmod(value, get_free_offers[sku][0][0])
+def remove_free_items_from_cart(cart, sku):
+    quotient, reminder = divmod(cart[sku], get_free_offers[sku][0][0])
     cart[[get_free_offers[sku][0][1][1]]]-= quotient
+    if cart[[get_free_offers[sku][0][1][1]]] < 0:
+        cart[[get_free_offers[sku][0][1][1]]] = 0
     return cart
 
 
@@ -64,6 +66,7 @@ if __name__ == '__main__':
     print(checkout('EEEEBB'))
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
