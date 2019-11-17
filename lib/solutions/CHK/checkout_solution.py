@@ -6,13 +6,18 @@ get_free_offers = {'E':[(2,(1,'B'))]} # 2E get one B free
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    value_counts = get_value_counts(skus)
+
     total_price = 0
     distinct_skus = list(set(skus))
     for sku in distinct_skus:
         if sku not in prices.keys():
             return -1
+
+    value_counts = get_value_counts(skus)
+    for sku in value_counts.keys():
         so_applied=False
-        number_of_occurrencies = skus.count(sku)
+        number_of_occurrencies = value_counts[sku]
         if sku in special_offers.keys():
             total_price += apply_special_offers(number_of_occurrencies, sku)
             so_applied = True
@@ -22,6 +27,12 @@ def checkout(skus):
             total_price += number_of_occurrencies * prices[sku]
     return total_price
 
+def get_value_counts(skus):
+    distinct_skus = list(set(skus))
+    value_counts = {}
+    for sku in distinct_skus:
+        value_counts[sku] = skus.count(sku)
+    return value_counts
 
 def apply_special_offers(value, sku):
     """
@@ -42,6 +53,7 @@ def apply_get_free_offers( value, sku):
 
     return quotient*prices[get_free_offers[sku][0][1][1]]
 
+
 if __name__ == '__main__':
     assert(checkout('E')==40)
     assert(checkout('ABCDE')==155)
@@ -50,6 +62,7 @@ if __name__ == '__main__':
     assert(checkout('EE')==80)
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
