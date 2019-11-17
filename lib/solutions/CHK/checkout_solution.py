@@ -41,5 +41,6 @@ def apply_get_free_offers( value, sku):
     return reminder*prices[get_free_offers[sku][0][1][1]]
 
 if __name__ == '__main__':
-    print(checkout('EEB'))
+    print(checkout('AAAA'))
+
 
