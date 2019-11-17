@@ -30,5 +30,3 @@ def apply_special_offers(value, special_offers, sku):
 
 if __name__ == '__main__':
     print(checkout('AAAA'))
-
-
