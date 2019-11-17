@@ -1,10 +1,11 @@
 
 prices = {'A':50, 'B':30, 'C':20, 'D':15, 'E': 40}
-special_offers = {'A': [(3,130),(5,200)], 'B':[(2,45)]}
+# Special offers ordered in a list from better to worse
+special_offers = {'A': [(5,200),(3,130)], 'B':[(2,45)]} #3A for 130, 5A for 200 , 2B for 45
+get_free_offers = {'E':(2,(1,'B'))} # 2E get one B free
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-
     total_price = 0
     distinct_skus = list(set(skus))
     for sku in distinct_skus:
@@ -12,12 +13,20 @@ def checkout(skus):
             return -1
         number_of_occurrencies = skus.count(sku)
         if sku in special_offers.keys():
-            number_of_so = number_of_occurrencies // special_offers[sku][0][0]
-            number_of_single_items = number_of_occurrencies % special_offers[sku][0][0]
-            total_price += number_of_single_items*prices[sku] + number_of_so*special_offers[sku][0][1]
+            total_price = apply_special_offers(number_of_occurrencies,  special_offers, sku)
         else:
             total_price += number_of_occurrencies * prices[sku]
     return total_price
 
+
+def apply_special_offers(value, special_offers, sku):
+    quotient = value
+    price = 0
+    for special_offer in special_offers:
+        quotient, reminder = divmod(quotient, special_offer[0])
+        price += quotient*special_offer[1]
+    return price + reminder*prices[sku]
+
 if __name__ == '__main__':
-    print(checkout('TAAACT'))
+    print(checkout('AAA'))
+
