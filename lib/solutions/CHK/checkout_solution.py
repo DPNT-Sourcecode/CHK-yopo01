@@ -34,7 +34,6 @@ def apply_special_offers(value, sku):
     price = 0
     for special_offer in special_offers[sku]:
         quotient, reminder = divmod(reminder, special_offer[0])
-        print(quotient, reminder)
         price += quotient*special_offer[1]
     return price + reminder*prices[sku]
 
@@ -47,4 +46,10 @@ if __name__ == '__main__':
     assert(checkout('E')==40)
     assert(checkout('ABCDE')==155)
     assert(checkout('EEB')==80)
+    assert(checkout('EE')==80)
+    assert(checkout('EEEEBB')==160)
+    assert(checkout('BEBEEE')==160)
+
+
+
 
