@@ -8,7 +8,7 @@ def checkout(skus):
     total_price = 0
     distinct_skus = list(set(skus))
     for sku in distinct_skus:
-        if sku not in list('ABCD'):
+        if sku not in prices.keys():
             return -1
         number_of_occurrencies = skus.count(sku)
         if sku in special_offers.keys():
@@ -21,6 +21,7 @@ def checkout(skus):
 
 if __name__ == '__main__':
     print(checkout('TAAACT'))
+
 
 
 
