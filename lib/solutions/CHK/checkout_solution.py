@@ -4,9 +4,12 @@ special_offers = {'A': (3,130), 'B':(2,45)}
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+
     total_price = 0
     distinct_skus = list(set(skus))
     for sku in distinct_skus:
+        if sku not in list('ABCD'):
+            return -1
         number_of_occurrencies = skus.count(sku)
         if sku in special_offers.keys():
             number_of_so = number_of_occurrencies // special_offers[sku][0]
@@ -18,4 +21,5 @@ def checkout(skus):
 
 if __name__ == '__main__':
     print(checkout('AAAC'))
+
 
