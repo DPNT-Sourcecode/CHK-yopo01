@@ -15,7 +15,9 @@ def checkout(skus):
             return -1
 
     value_counts = get_value_counts(skus)
-
+    # Remove free items from cart
+    for sku in get_free_offers.keys():
+        value_counts = remove_free_items_from_cart(value_counts, sku)
 
     for sku in value_counts.keys():
         so_applied=False
@@ -23,8 +25,6 @@ def checkout(skus):
         if sku in special_offers.keys():
             total_price += apply_special_offers(number_of_occurrencies, sku)
             so_applied = True
-        if sku in get_free_offers.keys() and get_free_offers[sku][0][1][1] in value_counts.keys():
-            total_price -= apply_get_free_offers(number_of_occurrencies, sku)
         if not so_applied:
             total_price += number_of_occurrencies * prices[sku]
     return total_price
@@ -50,20 +50,20 @@ def apply_special_offers(value, sku):
         price += quotient*special_offer[1]
     return price + reminder*prices[sku]
 
-def apply_get_free_offers( value, sku):
+def remove_free_items_from_cart(cart, value, sku):
     quotient, reminder = divmod(value, get_free_offers[sku][0][0])
-
-    return quotient*prices[get_free_offers[sku][0][1][1]]
+    cart[[get_free_offers[sku][0][1][1]]]-= quotient
+    return cart
 
 
 if __name__ == '__main__':
     assert(checkout('E')==40)
     assert(checkout('ABCDE')==155)
     assert(checkout('EEB')==80)
-    print(checkout('EE'))
     assert(checkout('EE')==80)
     print(checkout('EEEEBB'))
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
