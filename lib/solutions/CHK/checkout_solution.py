@@ -11,13 +11,15 @@ def checkout(skus):
     for sku in distinct_skus:
         if sku not in prices.keys():
             return -1
+        so_applied=False
         number_of_occurrencies = skus.count(sku)
         if sku in special_offers.keys():
             total_price += apply_special_offers(number_of_occurrencies, sku)
+            so_applied = True
         if sku in get_free_offers.keys():
             total_price -= apply_get_free_offers(number_of_occurrencies, sku)
-        # else:
-        #     total_price += number_of_occurrencies * prices[sku]
+        if not so_applied:
+            total_price += number_of_occurrencies * prices[sku]
     return total_price
 
 
@@ -41,7 +43,8 @@ def apply_get_free_offers( value, sku):
     return reminder*prices[get_free_offers[sku][0][1][1]]
 
 if __name__ == '__main__':
-    print(checkout('AAAA'))
+    print(checkout('AAAAAAAA'))
+
 
 
 
