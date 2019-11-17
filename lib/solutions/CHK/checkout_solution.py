@@ -40,10 +40,11 @@ def apply_special_offers(value, sku):
 
 def apply_get_free_offers( value, sku):
     quotient, reminder = divmod(value, get_free_offers[sku][0][0])
-    return reminder*prices[get_free_offers[sku][0][1][1]]
+
+    return quotient*prices[get_free_offers[sku][0][1][1]]
 
 if __name__ == '__main__':
-    print(checkout('E'))
     assert(checkout('E')==40)
     assert(checkout('ABCDE')==155)
     assert(checkout('EEB')==80)
+
