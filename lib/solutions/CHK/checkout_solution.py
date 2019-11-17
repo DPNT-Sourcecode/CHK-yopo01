@@ -13,20 +13,22 @@ def checkout(skus):
             return -1
         number_of_occurrencies = skus.count(sku)
         if sku in special_offers.keys():
-            total_price = apply_special_offers(number_of_occurrencies,  special_offers, sku)
+            total_price = apply_special_offers(number_of_occurrencies,  special_offers[sku], sku)
         else:
             total_price += number_of_occurrencies * prices[sku]
     return total_price
 
 
 def apply_special_offers(value, special_offers, sku):
-    quotient = value
+    reminder = value
     price = 0
     for special_offer in special_offers:
-        quotient, reminder = divmod(quotient, special_offer[0])
+        quotient, reminder = divmod(reminder, special_offer[0])
+        print(quotient, reminder)
         price += quotient*special_offer[1]
     return price + reminder*prices[sku]
 
 if __name__ == '__main__':
-    print(checkout('AAA'))
+    print(checkout('AAAA'))
+
 
