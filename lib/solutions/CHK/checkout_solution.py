@@ -15,7 +15,7 @@ def checkout(skus):
             return -1
 
     # Calculate the shopping cart
-    cart = get_value_counts(skus)
+    cart = create_cart(skus)
     # Remove free items from cart
     for sku in get_free_offers.keys():
         cart_reduced = remove_free_items_from_cart(cart, sku)
@@ -31,12 +31,17 @@ def checkout(skus):
             total_price += number_of_occurrencies * prices[sku]
     return total_price
 
-def get_value_counts(skus):
+def create_cart(skus):
+    """
+    Create the cart
+    :param skus: list of items
+    :return: A dictionary representing the cart
+    """
     distinct_skus = list(set(skus))
-    value_counts = {}
+    _cart = {}
     for sku in distinct_skus:
-        value_counts[sku] = skus.count(sku)
-    return value_counts
+        _cart[sku] = skus.count(sku)
+    return _cart
 
 def apply_special_offers(value, sku):
     """
@@ -76,6 +81,7 @@ if __name__ == '__main__':
     assert(checkout('EE')==80)
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
