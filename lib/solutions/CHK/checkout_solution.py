@@ -52,9 +52,10 @@ def apply_special_offers(value, sku):
 
 def remove_free_items_from_cart(cart, sku):
     quotient, reminder = divmod(cart[sku], get_free_offers[sku][0][0])
-    cart[[get_free_offers[sku][0][1][1]]]-= quotient
-    if cart[[get_free_offers[sku][0][1][1]]] < 0:
-        cart[[get_free_offers[sku][0][1][1]]] = 0
+    item_to_remove = get_free_offers[sku][0][1][1]
+    cart[item_to_remove]-= quotient
+    if cart[item_to_remove] < 0:
+        cart[item_to_remove] = 0
     return cart
 
 
@@ -66,6 +67,7 @@ if __name__ == '__main__':
     print(checkout('EEEEBB'))
     assert(checkout('EEEEBB')==160)
     assert(checkout('BEBEEE')==160)
+
 
 
 
